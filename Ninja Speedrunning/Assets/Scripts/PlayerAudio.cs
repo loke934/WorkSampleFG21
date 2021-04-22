@@ -16,7 +16,7 @@ public class PlayerAudio : MonoBehaviour
     {
         if (!sneak.isPlaying)
         {
-            sneak.volume = Random.Range(0.5f, 0.1f);
+            sneak.volume = Random.Range(0.7f, 0.9f);
             sneak.pitch = Random.Range(0.5f, 1f);
             sneak.Play();
         }
@@ -26,7 +26,7 @@ public class PlayerAudio : MonoBehaviour
     {
         if (!walk.isPlaying)
         {
-            walk.volume = Random.Range(0.15f, 0.25f);
+            walk.volume = Random.Range(0.7f, 0.9f);
             walk.pitch = Random.Range(0.5f, 0.8f);
             walk.Play();
         }
@@ -36,7 +36,7 @@ public class PlayerAudio : MonoBehaviour
     {
         if (!run.isPlaying)
         {
-            run.volume = Random.Range(0.25f, 0.5f);
+            run.volume = Random.Range(0.9f, 1f);
             run.pitch = Random.Range(0.8f, 1f);
             run.Play();
         }

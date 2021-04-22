@@ -13,14 +13,13 @@ public class HighscoreManager : MonoBehaviour
     private int maxIndex = 10;
     [SerializeField] private int displayHighscores = 3;
 
-    //Make object of class HighscoreData
-    private HighscoreData highscoreDataObject = new HighscoreData();
+    private HighscoreData savedHighscores = new HighscoreData();
 
     private void Awake()
     {
         if (SaveSystem.LoadHighscores() != null)
         {
-            highscoreDataObject = SaveSystem.LoadHighscores();
+            savedHighscores = SaveSystem.LoadHighscores();
             SortScores();
         }
     }
@@ -28,42 +27,43 @@ public class HighscoreManager : MonoBehaviour
     private void SortScores()
     {
         List<PlayerData> tempList = new List<PlayerData>();
-        while (highscoreDataObject.scores.Count > 0)
+        while (savedHighscores.scores.Count > 0)
         {
-            PlayerData highestscore = null;
-            foreach (var score in highscoreDataObject.scores)
+            PlayerData playerScore = null;
+            foreach (var score in savedHighscores.scores)
             {
-                if (highestscore == null || score.time < highestscore.time)
+                if (playerScore == null || score.time < playerScore.time)
                 {
-                    highestscore = score;
+                    playerScore = score;
                 }
             }
-            tempList.Add(highestscore);
-            highscoreDataObject.scores.Remove(highestscore);
+
+            tempList.Add(playerScore);
+            savedHighscores.scores.Remove(playerScore); //Removes the value (PlayerData name + time) stored in highscores
         }
-        highscoreDataObject.scores = tempList;
+        savedHighscores.scores = tempList;
     }
 
     public void DisplayHighscoresMini()
     {
         string leaderboardstring = "";
         int length = displayHighscores;
-        if (highscoreDataObject.scores.Count < displayHighscores)
+        if (savedHighscores.scores.Count < displayHighscores)
         {
-            length = highscoreDataObject.scores.Count;
+            length = savedHighscores.scores.Count;
         }
         for (int i = 0; i < length; i++)
         {
-            leaderboardstring += $" {i + 1}) {highscoreDataObject.scores[i].playername} : {highscoreDataObject.scores[i].time} \n " ;
+            leaderboardstring += $" {i + 1}) {savedHighscores.scores[i].playername} : {savedHighscores.scores[i].time} \n " ;
         }
         leaderBoardMini.text = leaderboardstring;
     }
 
     public void HighscoreAddSortSave(PlayerData p)
     {
-        highscoreDataObject.scores.Add(p);
+        savedHighscores.scores.Add(p);
         SortScores();
-        SaveSystem.SaveHighscores(highscoreDataObject);
+        SaveSystem.SaveHighscores(savedHighscores);
     }
 
     public void DisplayHighscoresMainMenu()
@@ -71,16 +71,16 @@ public class HighscoreManager : MonoBehaviour
         string positionstring = "";
         string namestring = "";
         string timestring = "";
-        if (maxIndex > highscoreDataObject.scores.Count)
+        if (maxIndex > savedHighscores.scores.Count)
         {
-            maxIndex = highscoreDataObject.scores.Count;
+            maxIndex = savedHighscores.scores.Count;
         }
 
         for (int i = minIndex; i < maxIndex; i++)
         {
             positionstring += $"{i + 1} \n";
-            namestring += $"{highscoreDataObject.scores[i].playername} \n";
-            timestring += $"{highscoreDataObject.scores[i].time} \n";
+            namestring += $"{savedHighscores.scores[i].playername} \n";
+            timestring += $"{savedHighscores.scores[i].time} \n";
         }
 
         positionList.text = positionstring;
@@ -89,7 +89,7 @@ public class HighscoreManager : MonoBehaviour
     }
     public void ScrollList(int i)
     {
-        if (minIndex + i >= 0 || maxIndex + i >= highscoreDataObject.scores.Count)
+        if (minIndex + i >= 0 || maxIndex + i >= savedHighscores.scores.Count)
         {
             minIndex += i;
             maxIndex += i;

@@ -38,7 +38,8 @@ public class GameUIManagement : MonoBehaviour
     //End game
     [SerializeField] private UnityEvent OnEndGame;
     [SerializeField] private Canvas endgameCanvas;
-    [SerializeField] private Text endtext;
+    [SerializeField] private Text gameOverText;
+    [SerializeField] private Text winText;
 
     //Enter name
     [SerializeField] private Text playername;
@@ -179,21 +180,21 @@ public class GameUIManagement : MonoBehaviour
     {
         if (GlobalVariables.victory)
         {
-            endtext.text = "The orb is retrived, you win!";
+            winText.text = "The orb is retrived, you win!";
             enterNameCanvas.gameObject.SetActive(true);
             highscoremanager = GetComponent<HighscoreManager>();
             highscoremanager.DisplayHighscoresMini();
             Math.Round(timer, 3);
             playerScoreDisplay.text = $"Time: {timer} seconds.";
-            timertext.gameObject.SetActive(false);
         }
         else
         {
-            endtext.text = "Game over!";
+            gameOverText.text = "Game over!";
             endgameCanvas.gameObject.SetActive(true);
         }
 
         Cursor.lockState = CursorLockMode.Confined;
+        timertext.gameObject.SetActive(false);
         aim.gameObject.SetActive(false);
         OnEndGame.Invoke();
     }

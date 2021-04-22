@@ -160,13 +160,13 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+   /* private void OnDrawGizmos()
     {
         if (GlobalVariables.sprintMode)
         {
             Gizmos.DrawWireSphere(transform.position,1.5f);
         }
-    }
+    }*/
 
     private void Patrolling()
     {
