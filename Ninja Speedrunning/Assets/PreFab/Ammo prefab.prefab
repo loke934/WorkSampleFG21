@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2944349592790766574}
   - component: {fileID: 2944349592790766570}
   m_Layer: 0
-  m_Name: Ammo
+  m_Name: Ammo prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8cd34c9809f7dc9448188d80a21e8e7f, type: 2}
+  - {fileID: 2100000, guid: 050e5533ec560d143a3fb3221980a50c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
