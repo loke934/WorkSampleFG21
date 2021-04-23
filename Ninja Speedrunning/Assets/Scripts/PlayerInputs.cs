@@ -24,6 +24,7 @@ public class PlayerInputs : MonoBehaviour
     [SerializeField] private MeleeNinjaWeapon melee;
 
     [SerializeField] private float moveForce = 800;
+    [SerializeField] private float sprintForce = 1300;
     private float moveForceNormal;
     [SerializeField] private float jumpForce = 500;
     [SerializeField] private float turnSpeed = 200;
@@ -164,7 +165,7 @@ public class PlayerInputs : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             moveForceNormal = moveForce;
-            moveForce *= 2f;
+            moveForce = sprintForce;
             GlobalVariables.sprintMode = true;
         }
 

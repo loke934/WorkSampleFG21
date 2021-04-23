@@ -517,7 +517,8 @@ MonoBehaviour:
   feet: {fileID: 1905774939587615752}
   ranged: {fileID: 1905774938300560315}
   melee: {fileID: 1905774938621325023}
-  moveForce: 1000
+  moveForce: 800
+  sprintForce: 1300
   jumpForce: 550
   turnSpeed: 200
   adjustSpeed: 2.5

@@ -8,7 +8,7 @@ public static class SaveSystem
     public static void SaveHighscores(HighscoreData data)
     {
         BinaryFormatter bf = new BinaryFormatter();
-        string path = Application.persistentDataPath + "Highscores.bin";
+        string path = Path.Combine(Application.persistentDataPath, "Highscores.bin");
         FileStream fs = new FileStream(path, FileMode.Create);
         bf.Serialize(fs, data);
         fs.Close();
@@ -16,7 +16,7 @@ public static class SaveSystem
 
     public static HighscoreData LoadHighscores()
     {
-        string path = Application.persistentDataPath + "Highscores.bin";
+        string path = Path.Combine(Application.persistentDataPath, "Highscores.bin");
         if (File.Exists(path))
         {
             BinaryFormatter bf = new BinaryFormatter();

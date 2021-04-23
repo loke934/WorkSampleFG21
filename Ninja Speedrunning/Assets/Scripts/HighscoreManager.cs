@@ -13,13 +13,13 @@ public class HighscoreManager : MonoBehaviour
     private int maxIndex = 10;
     [SerializeField] private int displayHighscores = 3;
 
-    private HighscoreData savedHighscores = new HighscoreData();
-
+    private HighscoreData savedHighscores;
+    
     private void Awake()
     {
-        if (SaveSystem.LoadHighscores() != null)
+        savedHighscores = SaveSystem.LoadHighscores() ?? new HighscoreData();
+        if (savedHighscores != null)
         {
-            savedHighscores = SaveSystem.LoadHighscores();
             SortScores();
         }
     }
